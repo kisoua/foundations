@@ -6,7 +6,7 @@
   "scripts": {
     "commit": "git-cz",
     "lint": "eslint '*/**/*.{js, ts}' --quiet --fix",
-    "compile": "tsc -p tsconfig.json --outDir lib",
+    "compile": "tsc src/index.ts --outDir lib",
     "test": "jest"
   },
   "author": "zhangyaphet@gmail.com",
