@@ -9,6 +9,9 @@ jobs:
           keys:
             - v1-dependencies-{{ checksum "package.json" }}
       - run: npm install
+      - add_ssh_keys:
+        fingerprints:
+          - 'c1:4b:95:1c:c4:10:45:2b:c7:ea:c9:1b:d3:d2:92:38'
       - save_cache:
           paths:
             - node_modules
