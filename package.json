@@ -1,0 +1,34 @@
+{
+  "name": "foundations",
+  "version": "1.0.0",
+  "description": "Frontend foundation problem for leetcode-cn.com",
+  "main": "lib/index.js",
+  "scripts": {
+    "commit": "git-cz",
+    "test": "jest"
+  },
+  "author": "zhangyaphet@gmail.com",
+  "license": "MIT",
+  "gitHooks": {
+    "pre-commit": "lint-staged",
+    "commit-msg": "node scripts/verify-commit-msg.js",
+    "test": "jest"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "prettier --parser=typescript --write",
+      "git add"
+    ]
+  },
+  "devDependencies": {
+    "@types/jest": "^25.2.1",
+    "jest": "^25.4.0",
+    "ts-jest": "^25.4.0",
+    "typescript": "^3.8.3"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}
