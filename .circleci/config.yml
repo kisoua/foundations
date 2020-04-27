@@ -1,0 +1,46 @@
+version: 2.1
+orbs:
+  node: circleci/node@1.1.6
+jobs:
+  lint:
+    steps:
+      -checkout
+      -restore_cache:
+        keys:
+          - v1-deoendencies-{{ checksum "package.json" }}
+      - run: npm install
+      -save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run lint
+  test:
+    steps:
+      -checkout
+      -restore_cache:
+        keys:
+          - v1-deoendencies-{{ checksum "package.json" }}
+      - run: npm install
+      -save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run test
+  compile:
+    steps:
+      -checkout
+      -restore_cache:
+        keys:
+          - v1-dependencies-{{ checksum "package.json" }}
+      - run: npm install
+      - save_cache:
+        paths:
+          - node_modules
+        key: v1-dependencies-{{ checksum "package.json" }}
+      - run: npm run compile
+workflows:
+    build-and-test:
+      jobs:
+        - lint
+        - test 
+        - compile
